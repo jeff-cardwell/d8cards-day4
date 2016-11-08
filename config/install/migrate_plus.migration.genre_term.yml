@@ -1,0 +1,13 @@
+id: genre_term
+label: Genres of Movies
+migration_group: movie
+
+
+
+
+
+
+dependencies:
+  enforced:
+    module:
+      - day4
