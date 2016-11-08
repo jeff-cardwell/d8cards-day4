@@ -1,0 +1,11 @@
+id: movie
+label: Movie Imports
+description: Movie Imports from day 4.
+source_type: CSV Files
+shared_configuration:
+  source:
+    key: default
+dependencies:
+  enforced:
+    module:
+      - day4
