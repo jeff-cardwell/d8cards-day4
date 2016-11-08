@@ -1,0 +1,14 @@
+id: movie_node
+label: Movies from example
+migration_group: movie
+
+
+
+
+migration_dependencies:
+  required:
+    - genre_term
+dependencies:
+  enforced:
+    module:
+      - day4
