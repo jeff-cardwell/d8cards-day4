@@ -1,11 +1,13 @@
 id: genre_term
 label: Genres of Movies
+migration_tags:
+  - CSV
 migration_group: movie
 
 source:
   plugin: csv
   # Full path to the file.
-  path: /data/movies.csv
+  path: modules/custom/day4/data/movies.csv
   # The number of rows at the beginning which are not data.
   header_row_count: 1
   # These are the field names from the source file representing the key
@@ -13,15 +15,28 @@ source:
   # map table as columns sourceid1, sourceid2, and sourceid3.
   keys:
     - id
-
   column_names:
       0:
-        id: Identifier
+        id: ID
       4:
         genre: Movie Genre
 
+process:
+  vid:
+    plugin: default_value
+    # "genres" is the machine name of the vocabulary that these terms will be created
+    # under. It has been created separately from the migration.
+    default_value: genres
+  name:
+    -
+      plugin: explode
+      source: genre
+      delimiter: '|'
 
-
+destination:
+  # Here we're saying that each row of data (line from the CSV file) will be
+  # used to create a taxonomy term entity.
+  plugin: entity:taxonomy_term
 
 dependencies:
   enforced:
